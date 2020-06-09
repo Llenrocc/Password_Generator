@@ -1,5 +1,10 @@
 body {
     background: url(Assets/IMG_4631.jpg);
+    margin: 0;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
