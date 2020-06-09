@@ -8,3 +8,11 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.container {
+    background-color:#696969;
+    font-family: 'Shadows Into Light Two', cursive;
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 2px solid black;
+}
