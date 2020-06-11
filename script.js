@@ -1,65 +1,86 @@
-var _length = document.querySelector('input[name="length"]');
-var _lowercase = document.querySelector('input[name="lowercase"]');
-var _uppercase = document.querySelector('input[name="uppercase"]');
-var _number = document.querySelector('input[name="number"]');
-var _symbol = document.querySelector('input[name="symbol"]');
-var copy = document.getElementById("copy");
-var generateButton = document.querySelector('.interface button');
-
-const key_strings = {
-	lowercase: 'abcdefghijklmnopqrstuvwxyz',
-	uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-	number: '0123456789',
-	symbol: '*;<>()[]{}#$?!^|'
+var setChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
+var setMinimumLength = 8; 
+var setMaximumLength = 128;
+var setNum = 5; 
+ 
+//Strings:
+var pass = ""; //Password string.
+var plainText = ""; //Plain text version.
+var textTitle = ""; //Plain text intro.
+var fileName = "pass.txt"; //Plain text filename.
+ 
+//Random password function:
+function randString() {
+  //Get user values:
+  var newChars = $("#new-chars").val();
+  var newLenght = $("#new-length").val();
+  var newNum = $("#new-num").val();
+  //Check valid values:
+  if (newChars) {
+    setChars = newChars;
+  };
+  if (newLenght) {
+    setLenght = newLenght;
+  };
+  if (newNum) {
+    setNum = newNum;
+  };
+  //Reset table:
+  $("table").empty();
+  //Passwords gen:
+  for (i=0; i<setNum; i++) {
+    //Shuffle chars:
+    for(var j = 0; j < setLenght; j++) {
+      pass += setChars.charAt(Math.floor(Math.random() * setChars.length));
+    };
+    //Append items:
+    $("table").append("<tr><td>" + parseInt(i+1) + "</td><td>" + pass + "</td><td contenteditable=''>Edit me!</td></tr>");
+    //Reset 'pass' string:
+    pass = "";
+  };
 };
-
-
-copy.addEventListener("click", () => {
-	var _password = document.querySelector('input[type="text"]');
-    if(_password.value != "" && _password.value != "Include any key string and define the length!"){
-		_password.select();
-		document.execCommand('copy');
-		alert("Password copied!");
-	}
+ 
+//Run password generator:
+$(document).ready(function(){
+  randString();
 });
-
-generateButton.addEventListener("click", () => {
-	var length = +_length.value;
-	var activeLower = _lowercase.checked;
-	var activeUpper = _uppercase.checked;
-	var activeNumber = _number.checked;
-	var activeSymbol = _symbol.checked;
-	
-	generateRandomPassword(activeLower, activeUpper, activeNumber, activeSymbol, length);
-	
-	
+ 
+//Password generator triggers:
+$("input").change(function(){
+  randString();
 });
+ 
 
-function generateRandomPassword(lower, upper, num, sym, length){
-	let MAIN_STRING = "";
-	let PASSWORD = "";
-	
-	const options = {
-		lowercase: lower,
-		uppercase: upper,
-		number: num,
-		symbol: sym
-	};
-	
-	for(i=0;i<Object.keys(options).length;i++){
-		MAIN_STRING += (Object.values(options)[i]) ? key_strings[Object.keys(options)[i]] : "";
-	}
-	
-	if(MAIN_STRING != "" && length > 0){
-		for(i=0;i<length;i++){
-			PASSWORD += MAIN_STRING[Math.floor(Math.random() * MAIN_STRING.length)];
-		}
-		
-		document.querySelector('input[type="text"]').value = PASSWORD;
-		
-	}else{
-		document.querySelector('input[type="text"]').value = "Include any key string and define the length!";
-	}
-	
-    	
+function toPlain(){
+  
+  textTitle = "\n\n=========================\nRandom password generator\n=========================\n\n"
+ 
+  tableContent = $("table").html();
+  
+  plainText = tableContent.replace(/<tbody>|<\/tbody>|<tr>|<\/td>/g, '').replace(/<\/tr>/g, '\n').replace(/<td>|<td contenteditable="">/g, ' > ');
+};
+ 
+
+function download() {
+  
+  toPlain();
+  
+  var textContent = document.createElement('a');
+  textContent.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textTitle+plainText)); //Set content.
+  textContent.setAttribute('download', fileName) //set filename.
+  textContent.style.display = 'none'
+  document.body.appendChild(textContent)
+  textContent.click()
+  document.body.removeChild(textContent)
+};
+ 
+//Print function:
+function printTable(){
+  window.print();
 }
+ 
+//Buttons display:
+$(".buttons-box").hide(0);
+setTimeout(function(){ 
+  $(".buttons-box").fadeIn(300);
+}, 5000);
