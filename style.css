@@ -15,6 +15,7 @@ body {
     padding: 3rem;
     border-radius: 1rem;
     border: 2px solid black;
+
 }
 
 .form {
@@ -45,4 +46,18 @@ body {
     align-items: center;
     word-break: break-all;
     border-radius: 2rem;
-    }
+}
+
+.GenerateBtn {
+    border-radius: .5rem;
+    font-size: 20px;
+}
+
+.copyToClipboard {
+    border-radius: .5rem;
+    font-size: 20px;
+}
+
+label {
+    font-size: 30px;
+}
