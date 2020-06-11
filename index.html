@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
      <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap" rel="stylesheet">
      <script src="script.js" defer></script>
+     <link rel="stylesheet" href="style.css">
      
 </head>
 <body>
   <div class="container">
     <h1 class="title">Password Generator</h1>
-    <h3 class="password-display">Password</h3>
+    <h3 class="password-display" id="PasswordDIsplay">Password</h3>
     <form id="generatePassword" class="form">
       <label for="characterAmountRange">Number of Characters</label>
       <div>
@@ -23,17 +23,15 @@
       id="characterAmountNumber">
       </div>
      
-
+      <!-- Labels for the checkboxes-->
       <label for="includeUppercase">Include Uppercase</label>
-      <input type="checkbox" id="includeUppercase">
+        <input type="checkbox" id="includeUppercase">
 
       <label for="includeNumbers">Include Numbers</label>
-      <input type="checkbox" id="includeNumbers">
+        <input type="checkbox" id="includeNumbers">
 
       <label for="includeSymbols">Include Symbols</label>
-      <input type="checkbox" id="includeSymbols">
-
-      <button onclick="myFunction()" id="copyToClipboard">Copy to Clipboard</button>
+        <input type="checkbox" id="includeSymbols">
 
       <button type="submit" class="GenerateBtn">Generate Password</button>
 
