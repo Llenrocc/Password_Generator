@@ -4,3 +4,6 @@ const characterAmountRange = document.getElementById
 const characterAmountNumber = document.getElementById 
 ('characterAmountNumber')
 
+characterAmountNumber.addEventListener('input', syncCharacterAmount)
+
+characterAmountRange.addEventListener('input', syncCharacterAmount)
