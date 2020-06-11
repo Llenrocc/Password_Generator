@@ -1,50 +1,65 @@
-// Elements by Id
-var characterAmountRange = document.getElementById('characterAmountRange');
-var characterAmountNumber = document.getElementById('characterAmountNumber');
-var includeUppercaseElement = document.getElementById('includeUppercase');
-var includeNumbersElement = document.getElementById('includeNumbers');
-var includeSymbolsElement = document.getElementById('includeSymbols');
-var form = document.getElementById('generatePasswordForm');
+var _length = document.querySelector('input[name="length"]');
+var _lowercase = document.querySelector('input[name="lowercase"]');
+var _uppercase = document.querySelector('input[name="uppercase"]');
+var _number = document.querySelector('input[name="number"]');
+var _symbol = document.querySelector('input[name="symbol"]');
+var copy = document.getElementById("copy");
+var generateButton = document.querySelector('.interface button');
 
-characterAmountNumber.addEventListener('input', syncCharacterAmount);
-characterAmountRange.addEventListener('input', syncCharacterAmount);
+const key_strings = {
+	lowercase: 'abcdefghijklmnopqrstuvwxyz',
+	uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+	number: '0123456789',
+	symbol: '*;<>()[]{}#$?!^|'
+};
 
 
-
-form.addEventListener('submit', e  => {
-    e.preventDefault();
-    var characterAmount = characterAmountNumber.value;
-    var includeUppercase = includeUppercaseElement.checked;
-    var includeNumbers = includeNumbersElement.checked;
-    var includeSymbols = includeSymbolsElement.checked;
-    var password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
+copy.addEventListener("click", () => {
+	var _password = document.querySelector('input[type="text"]');
+    if(_password.value != "" && _password.value != "Include any key string and define the length!"){
+		_password.select();
+		document.execCommand('copy');
+		alert("Password copied!");
+	}
 });
 
-var LOWERCASE_CHAR_CODES = arrayFromLowtoHigh(97, 122);
-var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90);
-var NUMBER_CHAR_CODES = arrayFromLowtoHigh(48, 57);
-var SYMBOL_CHAR_CODES = arrayFromLowtoHigh(33, 47).concat(
-    arrayFromLowtoHigh(58, 64)
-).concat(
-    arrayFromLowtoHigh(91, 96)
-).concat(
-    arrayFromLowtoHigh(123, 126)
-)
+generateButton.addEventListener("click", () => {
+	var length = +_length.value;
+	var activeLower = _lowercase.checked;
+	var activeUpper = _uppercase.checked;
+	var activeNumber = _number.checked;
+	var activeSymbol = _symbol.checked;
+	
+	generateRandomPassword(activeLower, activeUpper, activeNumber, activeSymbol, length);
+	
+	
+});
 
-function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
-    String.fromCharCode(65);
-}
-
-function arrayFromLowToHigh(low, high) {
-    var array = []
-    for (let i = low; i <= high; i++) {
-        array.push(i);
-    }
-    return array;
-}
-
-function syncCharacterAmount(e) {
-    var value = e.target.value
-    characterAmountNumber.value = value;
-    characterAmountRange.value = value;
+function generateRandomPassword(lower, upper, num, sym, length){
+	let MAIN_STRING = "";
+	let PASSWORD = "";
+	
+	const options = {
+		lowercase: lower,
+		uppercase: upper,
+		number: num,
+		symbol: sym
+	};
+	
+	for(i=0;i<Object.keys(options).length;i++){
+		MAIN_STRING += (Object.values(options)[i]) ? key_strings[Object.keys(options)[i]] : "";
+	}
+	
+	if(MAIN_STRING != "" && length > 0){
+		for(i=0;i<length;i++){
+			PASSWORD += MAIN_STRING[Math.floor(Math.random() * MAIN_STRING.length)];
+		}
+		
+		document.querySelector('input[type="text"]').value = PASSWORD;
+		
+	}else{
+		document.querySelector('input[type="text"]').value = "Include any key string and define the length!";
+	}
+	
+    	
 }
