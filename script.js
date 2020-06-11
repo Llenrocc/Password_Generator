@@ -9,6 +9,7 @@ characterAmountNumber.addEventListener('input', syncCharacterAmount);
 characterAmountRange.addEventListener('input', syncCharacterAmount);
 
 
+
 form.addEventListener('submit', e  => {
     e.preventDefault();
     var characterAmount = characterAmountNumber.value;
@@ -19,7 +20,15 @@ form.addEventListener('submit', e  => {
 });
 
 function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
-    String.fromCharCode(65)
+    String.fromCharCode(65);
+}
+
+function arrayFromLowToHigh(low, high) {
+    var array = []
+    for (let i = low; i <= high; i++) {
+        array.push(i);
+    }
+    return array;
 }
 
 function syncCharacterAmount(e) {
