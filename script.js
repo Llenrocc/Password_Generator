@@ -22,6 +22,14 @@ form.addEventListener('submit', e  => {
 
 var LOWERCASE_CHAR_CODES = arrayFromLowtoHigh(97, 122);
 var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90);
+var NUMBER_CHAR_CODES = arrayFromLowtoHigh(48, 57);
+var SYMBOL_CHAR_CODES = arrayFromLowtoHigh(33, 47).concat(
+    arrayFromLowtoHigh(58, 64)
+).concat(
+    arrayFromLowtoHigh(91, 96)
+).concat(
+    arrayFromLowtoHigh(123, 126)
+)
 
 function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
     String.fromCharCode(65);
