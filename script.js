@@ -1,6 +1,8 @@
 var characterAmountRange = document.getElementById('characterAmountRange');
 var characterAmountNumber = document.getElementById('characterAmountNumber');
 var includeUppercaseElement = document.getElementById('includeUppercase');
+var includeNumbersElement = document.getElementById('includeNumbers');
+var includeSymbolsElement = document.getElementById('includeSymbols');
 var form = document.getElementById('generatePasswordForm');
 
 characterAmountNumber.addEventListener('input', syncCharacterAmount);
@@ -15,6 +17,10 @@ form.addEventListener('submit', e  => {
     var includeSymbols = includeSymbolsElement.checked;
     var password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
 });
+
+function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
+    String.fromCharCode(65)
+}
 
 function syncCharacterAmount(e) {
     var value = e.target.value
