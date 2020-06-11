@@ -8,8 +8,8 @@ const includeNumbersElement = document.getElementById('includeNumbers')
 const includeSymbolsElement = document.getElementById('includeSymbols')
 const form = document.getElementById('generatePassword')
 
-const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
-const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
+const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
+const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
 const NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
 const SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
     arrayFromLowToHigh(58, 64)
@@ -35,7 +35,22 @@ form.addEventListener('submit', e => {
 
 function generatePassword(characterAmount, includeUppercase, includeNumbers,
     includeSymbols) {
-        String.fromCharCode(65)
+        let charChodes = LOWERCASE_CHAR_CODES
+        if (includeUppercase) chardChodes = charChodes.concat
+        (UPPERCASE_CHAR_CODES)
+        if (includeSymbols) charCodes = charCodes.concat
+        (SYMBOL_CHAR_CODES)
+        if (includeNumbers) charCodes = charCodes.concat
+        (NUMBER_CHAR_CODES)
+
+        for (let i = 0; i < characterAmount; i++) {
+            const
+            passwordCharacters.push(character)
+        }
+
+        }
+
+        
 }
 
 function arrayFromLowtoHigh(low, high) {
