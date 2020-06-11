@@ -3,19 +3,19 @@ var setMinimumLength = 8;
 var setMaximumLength = 128;
 var setNum = 5; 
  
-//Strings:
-var pass = ""; //Password string.
-var plainText = ""; //Plain text version.
-var textTitle = ""; //Plain text intro.
-var fileName = "pass.txt"; //Plain text filename.
+
+var pass = ""; /
+var plainText = ""; 
+var textTitle = ""; 
+var fileName = "pass.txt"; 
  
-//Random password function:
+
 function randString() {
-  //Get user values:
+ 
   var newChars = $("#new-chars").val();
   var newLenght = $("#new-length").val();
   var newNum = $("#new-num").val();
-  //Check valid values:
+
   if (newChars) {
     setChars = newChars;
   };
@@ -25,7 +25,7 @@ function randString() {
   if (newNum) {
     setNum = newNum;
   };
-  //Reset table:
+
   $("table").empty();
   //Passwords gen:
   for (i=0; i<setNum; i++) {
@@ -35,17 +35,17 @@ function randString() {
     };
     //Append items:
     $("table").append("<tr><td>" + parseInt(i+1) + "</td><td>" + pass + "</td><td contenteditable=''>Edit me!</td></tr>");
-    //Reset 'pass' string:
+  
     pass = "";
   };
 };
  
-//Run password generator:
+
 $(document).ready(function(){
   randString();
 });
  
-//Password generator triggers:
+
 $("input").change(function(){
   randString();
 });
