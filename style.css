@@ -16,3 +16,12 @@ body {
     border-radius: 1rem;
     border: 2px solid black;
 }
+
+.form {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 1rem;
+    column-gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}
