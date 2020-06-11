@@ -1,3 +1,4 @@
+// Elements by Id
 var characterAmountRange = document.getElementById('characterAmountRange');
 var characterAmountNumber = document.getElementById('characterAmountNumber');
 var includeUppercaseElement = document.getElementById('includeUppercase');
@@ -18,6 +19,9 @@ form.addEventListener('submit', e  => {
     var includeSymbols = includeSymbolsElement.checked;
     var password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
 });
+
+var LOWERCASE_CHAR_CODES = arrayFromLowtoHigh(97, 122);
+var UPPERCASE_CHAR_CODES = arrayFromLowtoHigh(65, 90);
 
 function generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols) {
     String.fromCharCode(65);
