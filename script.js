@@ -8,6 +8,10 @@ const includeNumbersElement = document.getElementById('includeNumbers')
 const includeSymbolsElement = document.getElementById('includeSymbols')
 const form = document.getElementById('generatePassword')
 
+const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
+const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
+const NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
+
 characterAmountNumber.addEventListener('input', syncCharacterAmount)
 characterAmountRange.addEventListener('input', syncCharacterAmount)
 
