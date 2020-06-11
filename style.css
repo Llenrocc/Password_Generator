@@ -25,3 +25,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.title {
+   margin: 0;
+   text-align: center; 
+}
