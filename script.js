@@ -1,86 +1,70 @@
-var setChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
-var setMinimumLength = 8; 
-var setMaximumLength = 128;
-var setNum = 5; 
- 
+var characterAmountRange = document.getElementById 
+('characterAmountRange');
+var characterAmountNumber = document.getElementById 
+('characterAmountNumber');
+var includeUppercaseElement = document.getElementById
+('includeUppercase');
+var includeNumbersElement = document.getElementById('includeNumbers');
+var includeSymbolsElement = document.getElementById('includeSymbols');
+var form = document.getElementById('generatePassword');
+var passwordDisplay = document.getElementById('passwordDisplay');
 
-var pass = ""; /
-var plainText = ""; 
-var textTitle = ""; 
-var fileName = "pass.txt"; 
- 
+var LOWERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
+var UPPERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
+var NUMBER_CHAR_CODES = arrayFromLowToHigh(48, 57)
+var SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
+    arrayFromLowToHigh(58, 64)
+).concat(
+    arrayFromLowToHigh(91, 96)
+).concat(
+    arrayFromLowtoHigh(123, 126)
+)
 
-function randString() {
- 
-  var newChars = $("#new-chars").val();
-  var newLenght = $("#new-length").val();
-  var newNum = $("#new-num").val();
+characterAmountNumber.addEventListener('input', syncCharacterAmount);
+characterAmountRange.addEventListener('input', syncCharacterAmount);
 
-  if (newChars) {
-    setChars = newChars;
-  };
-  if (newLenght) {
-    setLenght = newLenght;
-  };
-  if (newNum) {
-    setNum = newNum;
-  };
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    var characterAmount = characterAmountNumber.value
+    var includeUppercase = includeUppercaseElement.checked
+    var includeNumbers = includeNumbersElement.checked
+    var includSymbols = includeSymbolsElement.checked
 
-  $("table").empty();
-  //Passwords gen:
-  for (i=0; i<setNum; i++) {
-    //Shuffle chars:
-    for(var j = 0; j < setLenght; j++) {
-      pass += setChars.charAt(Math.floor(Math.random() * setChars.length));
-    };
-    //Append items:
-    $("table").append("<tr><td>" + parseInt(i+1) + "</td><td>" + pass + "</td><td contenteditable=''>Edit me!</td></tr>");
-  
-    pass = "";
-  };
-};
- 
+    var password = generatePassword(characterAmount, includeUppercase,
+    includeNumbers, includeSymbols)
+    passwordDisplay.innerText = password
 
-$(document).ready(function(){
-  randString();
-});
- 
+})
 
-$("input").change(function(){
-  randString();
-});
- 
+function generatePassword(characterAmount, includeUppercase, includeNumbers,
+    includeSymbols) {
+        let charChodes = LOWERCASE_CHAR_CODES
+        if (includeUppercase) chardChodes = charChodes.concat
+        (UPPERCASE_CHAR_CODES)
+        if (includeSymbols) charCodes = charCodes.concat
+        (SYMBOL_CHAR_CODES)
+        if (includeNumbers) charCodes = charCodes.concat
+        (NUMBER_CHAR_CODES)
 
-function toPlain(){
-  
-  textTitle = "\n\n=========================\nRandom password generator\n=========================\n\n"
- 
-  tableContent = $("table").html();
-  
-  plainText = tableContent.replace(/<tbody>|<\/tbody>|<tr>|<\/td>/g, '').replace(/<\/tr>/g, '\n').replace(/<td>|<td contenteditable="">/g, ' > ');
-};
- 
+        for (let i = 0; i < characterAmount; i++) {
+            var characterCode = charCodes[Math.floor(Math.random() *
+            charCodes.length)]
+            passwordCharacters.push(String.fromCharCode(characterCode))
+        }
+        return password.Characters.join()
+        }
 
-function download() {
-  
-  toPlain();
-  
-  var textContent = document.createElement('a');
-  textContent.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textTitle+plainText)); //Set content.
-  textContent.setAttribute('download', fileName) //set filename.
-  textContent.style.display = 'none'
-  document.body.appendChild(textContent)
-  textContent.click()
-  document.body.removeChild(textContent)
-};
- 
-//Print function:
-function printTable(){
-  window.print();
+
+function arrayFromLowtoHigh(low, high) {
+    var array = []
+    for (let i = low; i <= high; i++) {
+    array.push
 }
- 
-//Buttons display:
-$(".buttons-box").hide(0);
-setTimeout(function(){ 
-  $(".buttons-box").fadeIn(300);
-}, 5000);
+    return array
+}
+
+function syncCharacterAmount(e) {
+    var value = e.target.value
+    characterAmountNumber.value = value
+    characterAmountRange.value = value
+}
