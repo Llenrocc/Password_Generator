@@ -68,19 +68,25 @@ Make single-purpose commits for related changes to ensure a clean, manageable hi
 Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
 
 
-Don't commit half-done work, for the sake of your collaborators (and your future self!).
+Project:
 
-
-Test your application before you commit to ensure functionality at every step in the development process.
-
-
-We would like you to have well over 200 commits by graduation, so commit early and often!
-
-Submission on BCS
-You are required to submit the following:
-
-
-The URL of the deployed application
-
-
-The URL of the GitHub repository
+- first added form class so i can change positioning of labels in the container
+- added class for password display
+- added word-break - so if password is too long, it will break at the end and create a new line
+- document.getElementById () for character amount range and character amount number
+- added slider for min-max number of characters
+- added syncharacter amount so i can set the range upon input
+- sync character amount (e) - e is the event argument
+- var value = e.target.value is to set character amount equal to that value
+- added id to form - so i can generate password upon click
+- i added e.preventDefault() so it will stop the form from submitting and refreshing the page, how ever once i kept adding code, I could not figure out why it stopped working. 
+- generatePassword (characterAmount, includeUppercase, includeNumbers, includeSymbols, includeLowercase) - incorporating all values - to get the variables for all 4, I need to pull from the values inside the page
+- addeding .checked to the end is for that it tells us if its true or false when the button is pushed
+- function generatePassword() - so script knows what to incorporate upon button click on generate Password
+- for loop is for looping through all our different variables from low to high
+- UPPERCASE_CHAR_CODES is my array of character codes - I concatinaed a new array onto it so i can add more symbols
+- used defer so it starts after the HTML loads
+- charCodes - the list of all the possbile character codes we can generate
+- need to create a variable that will store all passwords
+- used math.floor & math.random to generate random characters - it did not work
+I had variables working until I started adding more code, then it went from there.
